@@ -2,18 +2,18 @@
 calculate gongik's salary.
 
 # Model
-## user(id,name,pw)
-## userInfo(eslistmentDay,foodExpenses,transportationCosts)
+- user(id,name,pw)
+- userInfo(eslistmentDay,foodExpenses,transportationCosts)
 
 # View
-## index (회원가입 안돼있으면 권유, 로그인 됐으면 원하는 달의 월급 출력해줌)
-## inputSalaryMonth
-## layout
-## loginPage
-## inputEslistmentDayForm
-## inputAnnualLeaveForm
-## inputFoodExpensesAndTransportationCostForm
-## showCalculationResult
+- index (회원가입 안돼있으면 권유, 로그인 됐으면 원하는 달의 월급 출력해줌)
+- inputSalaryMonth
+- layout
+- loginPage
+- inputEslistmentDayForm
+- inputAnnualLeaveForm
+- inputFoodExpensesAndTransportationCostForm
+- showCalculationResult
 
 # Controller (기능별로 구현)
 - 로그인
@@ -24,4 +24,4 @@ calculate gongik's salary.
 - 모은 정보로 결과를 구한뒤 출력해주는 메소드
 
 # 제약사항
-## 모든 컨트롤러 기능에 단위별로 테스트 진행(mocha,chai)사용
+- 모든 컨트롤러 기능에 단위별로 테스트 진행(mocha,chai)사용
