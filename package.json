@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kim-seonghyun/gongikSalaryCalculator#readme",
   "dependencies": {
+    "chai-http": "^4.3.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.15"
