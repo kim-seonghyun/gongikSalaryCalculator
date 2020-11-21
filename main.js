@@ -2,9 +2,10 @@ const express = require('express')
 const app = express()
 const router = require('./routes/indexRoute')
 const mongoose = require('mongoose')
-
+const layout = require("express-ejs-layouts")
 app.set('view engine', 'ejs')
 app.set('port', 3000)
+app.use(layout)
 app.use(
   express.urlencoded({
     extended: false

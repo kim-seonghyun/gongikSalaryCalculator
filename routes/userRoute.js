@@ -6,6 +6,8 @@ router.get(
   userController.showInputFoodTransportationForm
 );
 router.get("/read", userController.showUserInfomation);
+router.get("/signUpForm",userController.showSignUpForm)
 router.post("/create", userController.create);
+router.post("/signup",userController.signUp);
 
 module.exports = router;

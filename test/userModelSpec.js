@@ -1,8 +1,10 @@
 // 테스트 개발환경 작성
-const { expect } = require('chai')
+const { expect, assert } = require('chai')
 const chai = require('chai')
 const chaiHTTP = require('chai-http')
 const app = require('../main')
+const bcrypt = require("bcrypt");
+
 const User = require('../model/user')
 chai.use(chaiHTTP)
 
@@ -64,12 +66,31 @@ describe('userController 테스트', () => {
       transportationCost: 3000
     })
   })
+  it('test user model works and bcrypt' , async ()=>{
+    const userAttributes = {
+      email: "arar",
+      name: "aab",
+      hashPassword: "abab"
+    }
+    const user = new User(testUser(userAttributes));
+    const resultPromise = user.save();
+    resultPromise.then((value)=>{
+      console.log(value);
+    }).catch(err=>{
+      console.log(err);
+    })
+    assert.ok(resultPromise);
+    
+    
+  })
 })
+
 
 const testUser = (body) => {
   return {
     email: body.email,
-    name: body.name
+    name: body.name,
+    hashPassword: body.hashPassword
   }
 }
 

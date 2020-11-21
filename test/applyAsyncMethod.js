@@ -15,4 +15,5 @@ describe('testing async', function () {
       assert.ok(result)
     } catch {}
   })
+  
 })
