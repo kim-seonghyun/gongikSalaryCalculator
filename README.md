@@ -16,7 +16,7 @@ calculate gongik's salary.
 
 # Controller (기능별로 구현)
 - 로그인
-- 회원가입
+- 회원가입(local-passport-mongoose 안쓰고 bcrypt와 passport 사용, 제한: 공식문서만 보기)
 - 입력 받은 날짜, 연차, 식비 데이터를 DB에 저장
 - authorize로 DB에 유효한 데이터 검증 추가 ( HTML에서 약간의 트릭으로 악용가능 하기떄문 )
 - 평일과 공휴일로 출근일수 계산해주는 메소드
