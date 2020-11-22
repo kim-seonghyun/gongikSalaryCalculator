@@ -20,7 +20,7 @@ const userSchema = new Schema({
   userInfo: { type: Schema.Types.ObjectId, ref: "userInfo" },
 });
 
-userSchema.pre("save",function(next){
+userSchema.pre("save",function(next){  //hash password
   const user = this;
   bcrypt.hash(user.hashPassword,10,function(err,hash){
     if(err){
@@ -29,7 +29,14 @@ userSchema.pre("save",function(next){
     user.hashPassword = hash;
     next();
   })
- 
 })
 
+userSchema.methods.validatePassword = async function(password){ 
+  const user = this;
+  const result = await bcrypt.compare(password,user.hashPassword);
+  return result;
+}
+
+
 module.exports = mongoose.model("User", userSchema);
+

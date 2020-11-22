@@ -1,5 +1,6 @@
 const UserInfo = require('../model/userInfo')
 const User = require("../model/user")
+const passport = require("passport");
 const getUserInfoParams = (body) => {
   // form에서 제출한 데이터를 정리해주는 메소드
   return {
@@ -38,6 +39,12 @@ module.exports = {
     const user = new User(getUserParams(req.body));
     const userSavePromise = await user.save();
     return res.json(userSavePromise);
-  }
-  
+  },
+  showLoginForm: (req,res)=>{
+    res.render('userView/loginForm')
+  },
+  authenticate: passport.authenticate('local',{
+    successRedirect: '/users//showInputFoodTransportationForm',
+    failureRedirect: '/users/login'
+  })
 }
