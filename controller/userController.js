@@ -2,13 +2,14 @@ const UserInfo = require("../model/userInfo");
 const User = require("../model/user");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const calculateSalary = require("../public/js/calculateSalary");
 const getUserInfoParams = (body) => {
   // form에서 제출한 데이터를 정리해주는 메소드
   return {
     _id: new mongoose.Types.ObjectId(),
-    eslistmentDay: body.inputEslistmentDay,
-    foodExpenses: body.inputFoodExpenses,
-    transportationCost: body.inputTransportationCost,
+    eslistmentDay: body.eslistmentDay,
+    foodExpenses: body.foodExpenses,
+    transportationCost: body.transportationCost,
   };
 };
 const getUserParams = (body) => {
@@ -39,8 +40,7 @@ module.exports = {
         }
       );
     }
-
-    res.json(result);
+    next();
   },
   showUserInfomation: async (req, res, next) => {
     // userInfo의 모든 정보를 불러옴
@@ -64,7 +64,13 @@ module.exports = {
     }
   },
   authenticate: passport.authenticate("local", {
-    successRedirect: "/users//showInputFoodTransportationForm",
+    successRedirect: "/users/showInputFoodTransportationForm",
     failureRedirect: "/users/login",
   }),
+  showCalculateSalaryResult: async (req,res,next)=>{
+    let salary = calculateSalary(req.body);
+    res.locals.salary = salary;
+    res.render("userView/showSalary");
+  }
 };
+

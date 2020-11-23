@@ -5,7 +5,7 @@ router.get(
   "/showInputFoodTransportationForm",
   userController.showInputFoodTransportationForm
 );
-router.post("/create", userController.create);
+router.post("/create", userController.create, userController.showCalculateSalaryResult);
 
 router.get("/login", userController.showLoginForm);
 router.post("/login", userController.authenticate);

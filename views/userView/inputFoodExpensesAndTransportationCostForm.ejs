@@ -5,22 +5,25 @@
     <input
       type="date"
       id="inputEslistmentDay"
-      name="inputEslistmentDay"
+      name="eslistmentDay"
       value="2018-07-22"
       min="2018-01-01"
-      max="2018-12-31"
+      max="2020-12-31"
     />
 
     <label for="inputFoodExpenses">식비</label>
-    <input type="text" name="inputFoodExpenses" id="foodExpenses" required />
+    <input type="number" name="foodExpenses" id="foodExpenses" required />
 
     <label for="inputTransportationCost">교통비</label>
     <input
-      type="text"
-      name="inputTransportationCost"
+      type="number"
+      name="transportationCost"
       id="inputTransportationCost"
       required
     />
+
+    <label for="inputWantMonth">몇월 월급을 계산할까요?(2020년만 지원중)</label>
+    <input type="number" maxlength="2" name="calculateMonth" placeholder="month">
 
     <button type="submit">제출!</button>
   </form>
