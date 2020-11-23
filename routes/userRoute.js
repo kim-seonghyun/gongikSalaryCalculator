@@ -7,12 +7,10 @@ router.get(
 );
 router.post("/create", userController.create);
 
+router.get("/login", userController.showLoginForm);
+router.post("/login", userController.authenticate);
 
-router.get("/login",userController.showLoginForm);
-router.post("/login",userController.authenticate);
-
-router.get("/signUp",userController.showSignUpForm);
-router.post("/signUp",userController.signUp);
-
+router.get("/signUp", userController.showSignUpForm);
+router.post("/signUp", userController.signUp, userController.redirectView);
 
 module.exports = router;
