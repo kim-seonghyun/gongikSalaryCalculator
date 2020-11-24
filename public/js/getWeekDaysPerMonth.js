@@ -1,8 +1,6 @@
 const getHolidayCount = require("./getHolidayCount");
 module.exports = getWeekDaysPerMonth = async (year, month) => {
   let holiday = await getHolidayCount(year, month)
-  console.log(`틀린점찾기: ${holiday}`);
-  
   return (
     daysPerMonth(year, month) -
     weekendDaysPerMonth(year, month) -

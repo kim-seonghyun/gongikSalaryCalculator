@@ -13,7 +13,7 @@ module.exports = async (year, month) => {
   }
 
   let response = await fetch(
-    `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${yearString}&solMonth=${monthString}&_type=json&ServiceKey=jeyicAtHfk7VZdtnfhK4a1fcdhkDYPQslA4G%2BFVbKU9lQQYpQmwKZFmsPAvTDan%2Fh3je2EMjn7%2BMWhRJlsXd3Q%3D%3D`
+    `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${yearString}&solMonth=${monthString}&_type=json&ServiceKey=${process.env.holidayAPI}`
   );
   let results = await response.json();
   let holidayArray = await results.response.body.items.item;

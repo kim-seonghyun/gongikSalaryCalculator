@@ -15,7 +15,6 @@ module.exports = calculateSalary = async (body) => {
 let calculateBasePay = (eslistmentDay, calculateMonth) => {
   //기본급 계산!
   let serviceMonth = calculateServiceMonth(eslistmentDay, calculateMonth);
-  console.log(serviceMonth);
   if (serviceMonth <= 2) {
     return 408100;
   }

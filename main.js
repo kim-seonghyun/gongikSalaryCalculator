@@ -9,7 +9,7 @@ const layout = require('express-ejs-layouts')
 const User = require('./model/user')
 const flashMessage = require("connect-flash")
 const morgan = require('morgan')
-
+require('dotenv').config();
 app.set('view engine', 'ejs')
 app.set('port', 3000)
 app.use(layout)
