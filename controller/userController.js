@@ -3,6 +3,7 @@ const User = require("../model/user");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const calculateSalary = require("../public/js/calculateSalary");
+const getHolidayInfo = require("../public/js/getHolidayCount");
 const getUserInfoParams = (body) => {
   // form에서 제출한 데이터를 정리해주는 메소드
   return {

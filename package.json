@@ -30,6 +30,7 @@
     "mocha": "^8.2.1",
     "mongoose": "^5.10.15",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
   },
