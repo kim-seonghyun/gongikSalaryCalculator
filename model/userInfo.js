@@ -15,6 +15,9 @@ const userInfoSchema = new Schema({
     type: Number,
     required: true,
   },
+  restDay: {
+    type: Number,
+  }
 });
 
 module.exports = mongoose.model("UserInfo", userInfoSchema);

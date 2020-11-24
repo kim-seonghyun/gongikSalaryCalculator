@@ -1,12 +1,11 @@
 const weekCalculator = require("./getWeekDaysPerMonth");
-
-module.exports = calculateSalary = (body) => {
+const holidayCalculator = require("../js/getHolidayCount");
+module.exports = calculateSalary = async (body) => {
   //월급계산
   let eslistmentDay = new Date(body.eslistmentDay);
   let { foodExpenses, transportationCost, calculateMonth } = body;
   let basePay = calculateBasePay(eslistmentDay, calculateMonth);
-  let numberOfWeekDay = weekCalculator(2020, calculateMonth);
-  console.log(basePay);
+  let numberOfWeekDay = await weekCalculator(2020, calculateMonth) - body.restDay;
   return (
     (parseInt(foodExpenses) + parseInt(transportationCost)) * numberOfWeekDay +
     basePay
@@ -17,13 +16,13 @@ let calculateBasePay = (eslistmentDay, calculateMonth) => {
   //기본급 계산!
   let serviceMonth = calculateServiceMonth(eslistmentDay, calculateMonth);
   console.log(serviceMonth);
-  if (serviceMonth < 3) {
+  if (serviceMonth <= 2) {
     return 408100;
   }
-  if (serviceMonth < 9) {
+  if (serviceMonth <= 8) {
     return 441700;
   }
-  if (serviceMonth < 15) {
+  if (serviceMonth <= 14) {
     return 488200;
   }
   if (serviceMonth < 25) {
@@ -39,9 +38,9 @@ let calculateServiceMonth = (eslistmentDay, calculateMonth) => {
   if (yearDifference > 0) {
     //마감시간이 안남아서 stackOverflow 참고. 나중에 다시구현
     let months = yearDifference * 12;
-    months -= eslistmentDay.getMonth();
+    months -= eslistmentDay.getMonth() ;
     months += today.getMonth();
-    return months;
+    return months +1;
   }
-  return today.getMonth() - eslistmentDay.getMonth();
+  return today.getMonth() - eslistmentDay.getMonth() +1;
 };

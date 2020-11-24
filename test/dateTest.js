@@ -1,12 +1,15 @@
 const { expect } = require("chai");
 const holiday = require("../public/js/getHolidayCount");
 
-let a = holiday(2020, 05);
-console.log(`holiday = ${a}`);
+
+
 describe("숫자에서 연,월,일 분리해야됨", () => {
-  it("expect: 10", () => {
-    expect(seperateYearMonthDate(20201018).getMonth()).to.eq(10);
-  });
+  it("holiday Check", async function(){
+    console.log(holiday(2020,02));
+    holiday(2020,02).then((result)=>{
+      console.log(result)
+    });
+  })
 });
 
 let seperateYearMonthDate = (number) => {

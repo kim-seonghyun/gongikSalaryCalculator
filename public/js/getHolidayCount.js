@@ -4,50 +4,40 @@ const fetch = require("node-fetch");
 module.exports = async (year, month) => {
   //평일 공휴일 수 리턴
   let holidayCounter = 0;
+  let monthString;
   let yearString = String(year);
+  monthString = String(month);
+
   if (month < 10) {
-    month = `0${month}`;
+    monthString = String(`0` + month);
   }
-  let monthString = String(month);
 
   let response = await fetch(
     `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?solYear=${yearString}&solMonth=${monthString}&_type=json&ServiceKey=jeyicAtHfk7VZdtnfhK4a1fcdhkDYPQslA4G%2BFVbKU9lQQYpQmwKZFmsPAvTDan%2Fh3je2EMjn7%2BMWhRJlsXd3Q%3D%3D`
   );
-
   let results = await response.json();
-  let result = await calcuateHoliday;
-  console.log(result);
-  let calcuateHoliday = new Promise((resolve, reject) => {
-    console.log("실행은됨");
-    let holidayArray = result.response.body.items.item;
-    console.log(holidayArray);
-    resolve(holidayArray);
-  });
+  let holidayArray = await results.response.body.items.item;
 
-  let count = await results.then((result) => {
-    if (typeof holidayArray !== Array && holidayArray !== null) {
-      //배열이 아닌경우 배열로만들기
-      let holidayObj = holwidayArray;
-      holidayArray = [];
-      holidayArray.push(holidayObj);
+  if (holidayArray == null) {
+    return 0;
+  }
+
+  if (!Array.isArray(holidayArray)) {
+    //배열이 아닌경우 배열로만들기
+    let holidayObj = holidayArray;
+    holidayArray = [];
+    holidayArray.push(holidayObj);
+  }
+  for (let i = 0; i < holidayArray.length; i++) {
+    //공휴일이 주말인경우 count에서 제외
+    let holidayDate = holidayArray[i].locdate; //날짜 변수
+    let holidayDateObj = seperateYearMonthDate(holidayDate);
+    if (holidayDateObj == 0 || holidayDateObj == 6) {
+      continue;
     }
-    for (let i = 0; i < holidayArray.length; i++) {
-      //공휴일이 주말인경우 count에서 제외
-      let holiday = holidayArray[i].locdate; //날짜 변수
-      let holidayDateObj = seperateYearMonthDate(holiday);
-      if (holidayDateObj == 0 || holidayDateObj == 6) {
-        continue;
-      }
-      holidayCounter += 1;
-      console.log(holidayCounter);
-    }
-    console.log(holidayCounter);
-    return holidayCounter;
-  });
-  count.then((c) => {
-    console.log(c);
-    return c;
-  });
+    holidayCounter += 1;
+  }
+  return holidayCounter;
 };
 // api값 하드코딩 하지마라
 

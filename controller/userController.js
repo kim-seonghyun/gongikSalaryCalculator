@@ -3,7 +3,6 @@ const User = require("../model/user");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const calculateSalary = require("../public/js/calculateSalary");
-const getHolidayInfo = require("../public/js/getHolidayCount");
 const getUserInfoParams = (body) => {
   // form에서 제출한 데이터를 정리해주는 메소드
   return {
@@ -11,6 +10,7 @@ const getUserInfoParams = (body) => {
     eslistmentDay: body.eslistmentDay,
     foodExpenses: body.foodExpenses,
     transportationCost: body.transportationCost,
+    restDay: body.restDay
   };
 };
 const getUserParams = (body) => {
@@ -69,7 +69,7 @@ module.exports = {
     failureRedirect: "/users/login",
   }),
   showCalculateSalaryResult: async (req,res,next)=>{
-    let salary = calculateSalary(req.body);
+    let salary = await calculateSalary(req.body);
     res.locals.salary = salary;
     res.render("userView/showSalary");
   }
