@@ -7,9 +7,9 @@ const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
 const layout = require('express-ejs-layouts')
 const User = require('./model/user')
-const flashMessage = require("connect-flash")
+const flashMessage = require('connect-flash')
 const morgan = require('morgan')
-require('dotenv').config();
+require('dotenv').config()
 app.set('view engine', 'ejs')
 app.set('port', 3000)
 app.use(layout)
@@ -30,7 +30,7 @@ app.use( // body parser
   })
 )
 app.use(express.json()) // bodyparser
-app.use(flashMessage());
+app.use(flashMessage())
 passport.use(new localStrategy({
   usernameField: 'email',
   passwordField: 'loginPW'
@@ -72,7 +72,7 @@ passport.deserializeUser(function (email, done) {
 app.use((req, res, next) => {
   res.locals.loggedIn = req.isAuthenticated()
   res.locals.currentUser = req.user
-  res.locals.flashMessage = req.flash();
+  res.locals.flashMessage = req.flash()
   next()
 })
 app.use(router)
