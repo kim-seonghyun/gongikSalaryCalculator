@@ -15,8 +15,8 @@ module.exports = async (year, month) => {
   );
   const responsdJSON = await response.json();
   const holidayArray = await responsdJSON.response.body.items.item; // api에서 특정월 공휴일을 불러옴
-
-  if (holidayArray === null) {
+  console.log(holidayArray);
+  if (holidayArray === undefined) {
     return 0;
   }
   pushObjectInArray(holidayArray);
@@ -36,6 +36,7 @@ const returnRestWeekday = async (promise) => {
   //평일 공휴일인 경우만 return
   let holidayCounter = 0;
   const holidayArray = await promise;
+  console.log(holidayArray);
   for (let i = 0; i < holidayArray.length; i++) {
     // 공휴일이 주말인경우 count에서 제외
     const holidayDate = holidayArray[i].locdate; // 날짜 변수

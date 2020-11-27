@@ -2,33 +2,43 @@ const weekCalculator = require("./getWeekDaysPerMonth");
 
 module.exports = calculateSalary = async (body) => {
   //월급계산
+
   let eslistmentDay = new Date(body.eslistmentDay);
-  let { foodExpenses, transportationCost, calculateMonth } = body;
+  let calculateMonth = parseInt(body.calculateMonth);
   let basePay = calculateBasePay(eslistmentDay, calculateMonth);
+  const isFirstMonth = calculateMonth - (eslistmentDay.getMonth() + 1);
   let numberOfWeekDay =
     (await weekCalculator.getWeekDaysPerMonth(2020, calculateMonth)) -
     body.restDay;
-  numberOfWeekDay = (eslistmentDay.getMonth() !== calculateMonth) ? numberOfWeekDay: 
-  numberOfWeekDay -  
-  return (
-    (parseInt(foodExpenses) + parseInt(transportationCost)) * numberOfWeekDay +
-    basePay
-  );
-};
-let firstMonth = async (body) => {
-  const checkFirstMonth = body.calculateMonth - body.eslistmentDay.getMonth;
-  if (checkFirstMonth === 0) {
-    const workedDays = await weekCalculator.daysPerMonth(
-      2020,
-      body.calculateMonth
-    );
-    return Math.floor(
-      (408100 * (workedDays - body.eslistmentDay.getDate())) / workedDays
-    );
+  if (isFirstMonth == 0) {
+    console.log("실행됨");
+    let value = firstMonth(eslistmentDay, calculateMonth);
+    basePay = value[0];
+    numberOfWeekDay = value[1];
+    console.log(basePay);
+    return calculateSalaryResult(body, basePay, numberOfWeekDay);
   }
+
+  return calculateSalaryResult(body, basePay, numberOfWeekDay);
 };
 
-let calculateBasePay = async (eslistmentDay, calculateMonth) => {
+let calculateSalaryResult = (body, basePay, numberOfWeekDay) => {
+  let foodExpenses = parseInt(body.foodExpenses);
+  let transportationCost = parseInt(body.transportationCost);
+
+  return (foodExpenses + transportationCost) * numberOfWeekDay + basePay;
+};
+let firstMonth = (eslistmentDay, calculateMonth) => {
+  const workedDays = weekCalculator.daysPerMonth(2020, calculateMonth);
+  const basePay = Math.floor(
+    (408100 * (workedDays - eslistmentDay.getDate())) / workedDays
+  );
+  console.log(typeof basePay);
+  const numberOfWeekDay = workedDays - eslistmentDay.getDate();
+  return [basePay, numberOfWeekDay];
+};
+
+let calculateBasePay = (eslistmentDay, calculateMonth) => {
   //기본급 계산!
   let serviceMonth = calculateServiceMonth(eslistmentDay, calculateMonth);
 
