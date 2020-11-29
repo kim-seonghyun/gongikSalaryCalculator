@@ -11,7 +11,7 @@ const flashMessage = require('connect-flash')
 const morgan = require('morgan')
 require('dotenv').config()
 app.set('view engine', 'ejs')
-app.set('port', 3000)
+app.set('port', process.env.PORT || 3000)
 app.use(layout)
 app.use(express.static('public'))
 
@@ -56,7 +56,7 @@ function (email, loginPW, done) { // 아마 여기서 deserialize실행?
 app.use(passport.initialize())
 app.use(passport.session())
 
-mongoose.connect('mongodb://localhost:27017/gongikSalaryDB', {
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost:27017/gongikSalaryDB', {
   useNewUrlParser: true
 })
 passport.serializeUser(function (user, done) {
