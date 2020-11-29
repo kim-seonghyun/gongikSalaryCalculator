@@ -16,20 +16,47 @@
       crossorigin="anonymous"
     />
     <style>
-      html,
-      body {
+      html,body{
         margin: 0;
         height: 100%;
         width: 100%;
+      }
+      .title {
+        font-size:6em;
+        color: #ecf0f1;
+        font-weight: 500;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity:0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      body {
+        display: flex;
+        background-image: url('/images/bg1.jpg');
+        background-size: cover;
+        background-position: center center;
+        animation:fadeIn 1s ease-in-out forwards;
+       
+        justify-content: center;
+        align-items: center;
       }
       .title {
         font-size: 200;
         text-align: center;
       }
       .box {
-        width: 90%;
-        height: 90%;
+        appearance:none;
+        width: 50%;
+        height: 50%;
+        background:none;
+        color: #ecf0f1;
+        border-radius: 1rem;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
@@ -40,14 +67,23 @@
       .inputUserInfo > label {
         margin-top: 10px;
       }
+      .index > a {
+        color:#dcdde1;
+        text-decoration: none;
+        font-size: 2em;
+      }
+      input {
+        border:none;
+        border-radius: 1rem;
+        background-color: #dcdde1;
+      }
     </style>
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1 class="title">공익 월급 계산기</h1>
     <% if(flashMessage) { %>
     <p><%= flashMessage.success %></p>
-    <% } %> <%- include('./loginInformation') %> <%- body %>>
+    <% } %> <%- include('./loginInformation') %> <%- body %>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

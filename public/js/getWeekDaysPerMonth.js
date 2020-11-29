@@ -39,7 +39,7 @@ let weekendDaysPerMonth = (year, month) => {
     return (
       countSpecificDaysPerMonth(1, year, month) +
       countSpecificDaysPerMonth(firstSaturDayDate, year, month)
-    ); //일요일+토요일 일수 리턴
+    ); //일요일+토요일 일수 리턴v
   }
   return (
     countSpecificDaysPerMonth(firstSaturDayDate, year, month) +

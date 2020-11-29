@@ -11,14 +11,11 @@ module.exports = calculateSalary = async (body) => {
     (await weekCalculator.getWeekDaysPerMonth(2020, calculateMonth)) -
     body.restDay;
   if (isFirstMonth == 0) {
-    console.log("실행됨");
     let value = firstMonth(eslistmentDay, calculateMonth);
     basePay = value[0];
     numberOfWeekDay = value[1];
-    console.log(basePay);
     return calculateSalaryResult(body, basePay, numberOfWeekDay);
   }
-
   return calculateSalaryResult(body, basePay, numberOfWeekDay);
 };
 
