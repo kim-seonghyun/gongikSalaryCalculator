@@ -16,15 +16,24 @@
       crossorigin="anonymous"
     />
     <style>
+
+      @font-face {
+        font-family: "googleFont";
+        src: url("/font/Sunflower-Medium.ttf");
+      }
+      h1,h2,h3,h4,h5,h6 {
+        margin: 0;
+      }
       html,body{
         margin: 0;
         height: 100%;
         width: 100%;
+        font-family: "googleFont";
       }
       .title {
         font-size:6em;
         color: #ecf0f1;
-        font-weight: 500;
+        font-weight: 700;
       }
       @keyframes fadeIn {
         from {
@@ -36,47 +45,110 @@
       }
       body {
         display: flex;
-        background-image: url('/images/bg1.jpg');
+        background-color: #82ccdd;
         background-size: cover;
         background-position: center center;
         animation:fadeIn 1s ease-in-out forwards;
-       
         justify-content: center;
         align-items: center;
       }
       .title {
-        font-size: 200;
+        font-size: 6em;
         text-align: center;
       }
       .box {
+        box-shadow: 3px 3px 3px 3px#3c6382;
         appearance:none;
-        width: 50%;
-        height: 50%;
-        background:none;
-        color: #ecf0f1;
+         opacity: 0.8;
+        width: 400px;
+        height: 540px;
+        
         border-radius: 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+        animation:fadeIn 1s ease-in-out forwards;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        width:90%;
+        height:90%;
+      }
+      label {
+        color: #f5f6fa;
+        font-weight: 400;
+        font-size: 1em;
+      }
+      input::placeholder {
+        color: #3c6382;
       }
       input {
+        color: #dcdde1;
         display: block;
+        opacity: 0.7;
       }
       .inputUserInfo > label {
         margin-top: 10px;
       }
+      .index {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        width:50%;
+        height:50%;
+      }
       .index > a {
-        color: #dcdde1;
+        color: #3c6382;
         text-decoration: none;
         font-size: 2em;
       }
-      input {
-        border:none;
-        border-radius: 1rem;
-        background-color: #dcdde1;
+      .submitDiv {
+        display: flex;
+        justify-content: flex-end;
       }
+      .submitButton {
+        margin-top:10px;
+      }
+      .showSalary {
+        color: #3c6382;
+      }
+      @media screen and (max-width: 768px) {
+        @font-face {
+        font-family: "googleFont";
+        src: url("/font/Sunflower-Medium.ttf");
+      }
+      h1,h2,h3,h4,h5,h6 {
+        margin: 0;
+      }
+      html,body{
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: "googleFont";
+      }
+      .title{
+        font-size: 3em;
+        text-align: center;
+      }
+      .index {
+        width:80%;
+        height:80%;
+      }
+      .index > a {
+        text-align: center;
+        color: #dcdde1;
+        text-decoration: none;
+        font-size: 1.2em;
+      }
+      .box {
+        box-shadow: none;
+      }
+    }
+
     </style>
     <title>Hello, world!</title>
   </head>

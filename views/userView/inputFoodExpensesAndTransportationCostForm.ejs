@@ -1,8 +1,9 @@
-<div class="container box">
+<div class="container box form-group">
   
   <form class="inputUserInfo" method="POST" action="/users/create">
     <label for="inputEslistmentDay">입대 일자</label>
     <input
+    class="form-control"
       type="date"
       id="inputEslistmentDay"
       name="eslistmentDay"
@@ -12,10 +13,11 @@
     />
 
     <label for="inputFoodExpenses">식비</label>
-    <input type="number" name="foodExpenses" id="foodExpenses" required />
+    <input class="form-control" type="number" name="foodExpenses" id="foodExpenses" required />
 
     <label for="inputTransportationCost">교통비</label>
     <input
+    class="form-control"
       type="number"
       name="transportationCost"
       id="inputTransportationCost"
@@ -23,11 +25,14 @@
     />
 
     <label for="inputWantMonth">몇월 월급을 계산할까요?(2020년만 지원중)</label>
-    <input type="number" maxlength="2" name="calculateMonth" placeholder="month">
+    <input class="form-control" type="number" maxlength="2" name="calculateMonth" placeholder="month">
 
     <label for="inputRestDay">연/병가 사용 일수</label>
-    <input type="number" name="restDay" id="inputRestDay" placeholder="오후반가는 식비가 나옵니다! ">
-    <button type="submit">제출!</button>
+    <input class="form-control" type="number" name="restDay" id="inputRestDay" placeholder="오후반가는 식비가 나옵니다! ">
+    <div class="submitDiv">
+      <button class="btn btn-dark btn-outline-dark submitButton" type="submit">제출!</button>
+    </div>
+    
   </form>
 </div>
 
