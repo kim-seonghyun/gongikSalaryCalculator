@@ -2,7 +2,6 @@ const weekCalculator = require("./getWeekDaysPerMonth");
 
 module.exports = calculateSalary = async (body) => {
   //월급계산
- 
   let eslistmentDay = new Date(body.eslistmentDay);
   let calculateMonth = parseInt(body.calculateMonth);
   let basePay = calculateBasePay(eslistmentDay, calculateMonth);
