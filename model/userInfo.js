@@ -9,10 +9,14 @@ const userInfoSchema = new Schema({
   },
   foodExpenses: {
     type: Number,
+    min:2000,
+    max:10000,
     required: true,
   },
   transportationCost: {
     type: Number,
+    min:2000,
+    max:10000,
     required: true,
   },
   restDay: {
