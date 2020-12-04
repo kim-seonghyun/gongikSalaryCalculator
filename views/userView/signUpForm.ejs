@@ -1,15 +1,19 @@
 <div class="container box">
-<form class="showSignUpForm" method="POST" action="/users/signUp">
+  <form class="showSignUpForm" method="POST" action="/users/signUp">
     <label for="inputEmail">email</label>
-    <input id="inputEmail" name="email" required>
+    <input
+      id="inputEmail"
+      name="email"
+      pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+      required
+    />
 
     <label for="inputName">name</label>
-    <input id="inputName" name="name" required>
+    <input id="inputName" name="name" required />
 
     <label for="inputPassword">password</label>
-    <input id="inputPassword" name="hashPassword" required>
+    <input id="inputPassword" name="hashPassword" required />
 
     <button type="submit">제출</button>
-</form>
-    
+  </form>
 </div>
