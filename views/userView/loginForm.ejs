@@ -1,4 +1,7 @@
 <div class="container box">
+    <% if(flashMessage) { %>
+        <p><%= flashMessage.success %></p>
+        <% } %>
     <form method="POST" action="/users/login" class="loginForm">
         <label for="inputEmail">email</label>
         <input type="text" id="inputEmail" name="email">

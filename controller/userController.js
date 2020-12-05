@@ -3,6 +3,7 @@ const User = require('../model/user')
 const passport = require('passport')
 const mongoose = require('mongoose')
 const calculateSalary = require('../public/js/calculateSalary')
+const {body,validationResult} = require("express-validator");
 const getUserInfoParams = (body) => {
   // form에서 제출한 데이터를 정리해주는 메소드
   return {
@@ -48,12 +49,20 @@ module.exports = {
     const result = await UserInfo.find()
     return res.json(result)
   },
-  signUp: async (req, res, next) => {
-    const user = new User(getUserParams(req.body))
-    await user.save()
-    res.locals.redirect = '/users/login'
-    req.flash('success', 'complete signUp')
-    next()
+  signUp: (req, res, next) => {
+    if(req.skip == true){
+      console.log("skip은 실행됐는데?");
+      next()
+    }
+    else{
+      console.log("등록중");
+      const user = new User(getUserParams(req.body))
+      user.save()
+      res.locals.redirect = '/users/login'
+      req.flash('success', 'complete signUp')
+      next()
+    }
+    
   },
   showLoginForm: (req, res) => {
     res.render('userView/loginForm')
@@ -73,5 +82,16 @@ module.exports = {
     console.log(salary);
     res.locals.salary = salary
     res.render('userView/showSalary')
+  },
+  validate: (req,res,next)=>{
+    const errors = validationResult(req).errors;
+    if(Object.keys(errors).length !== 0){
+      let messages = errors.map(e => e.msg);
+      req.flash("error",messages);
+      req.skip = true;
+      res.locals.redirect = "/users/signUp";
+      next();
+    }
+    next();
   }
 }

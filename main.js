@@ -23,7 +23,6 @@ app.use(session({
   },
   resave: false
 }))
-
 app.use( // body parser
   express.urlencoded({
     extended: false

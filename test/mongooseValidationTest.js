@@ -3,6 +3,7 @@ var expect = require("chai").expect;
 const user = require("../model/user");
 var User = require("../model/user")
 var UserInfo = require("../model/userInfo");
+const {validationResult} = require("express-validator");
 
 describe('user 모델 유효성 검사 테스트',function(){ //실패 케이스
     it("name 필드가 비어있으면 유효하지 않음!, name err필드가 존재하면 유효성 검사 통과",function(done){
@@ -62,4 +63,6 @@ describe("userInfo 모델 유효성 검사 테스트",()=>{
             done();
         })
     })
-})
+
+   
+}) 

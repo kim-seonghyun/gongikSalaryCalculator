@@ -1,15 +1,19 @@
 <div class="container box">
+    <% if(flashMessage.error) { %>
+       <% flashMessage.error.forEach(msg=>{ %>
+           <p><%= msg %></p>
+       <% }) %>
+    <% } %>
 <form class="showSignUpForm" method="POST" action="/users/signUp">
     <label for="inputEmail">email</label>
-    <input id="inputEmail" name="email" required>
+    <input id="inputEmail" name="email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
 
     <label for="inputName">name</label>
     <input id="inputName" name="name" required>
 
     <label for="inputPassword">password</label>
-    <input id="inputPassword" name="hashPassword" required>
+    <input id="inputPassword" name="hashPassword" type="password" required>
 
     <button type="submit">제출</button>
 </form>
-    
 </div>
