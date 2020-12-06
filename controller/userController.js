@@ -89,7 +89,6 @@ module.exports = {
   },
   validate: (req,res,next)=>{
     const errors = validationResult(req).errors;
-    console.log(errors);
     if(Object.keys(errors).length !== 0){
       let messages = errors.map(e => e.msg);
       req.flash("error",messages);

@@ -1,12 +1,17 @@
 const router = require("express").Router();
   const userController = require("../controller/userController");
   const {body} = require('express-validator');
-
+  const User = require("../model/user");
 const validateUserRequest = [
   body("name","이름을 입력해주세요!").notEmpty(),
   body("email","이메일 형식을 맞춰주세요!").isEmail().notEmpty(),
-  
-  body("hashPassword","비밀번호를 입력해주세요!").notEmpty()
+  body("hashPassword","비밀번호를 입력해주세요!").notEmpty(),
+  body("email","Email already exists").custom(async function(value){
+    let user = await User.findOne({email:value});
+      if(user){
+        return Promise.reject('E-mail already in use');
+      }
+  })
 ];
 
 const validateUserInfoRequest = [

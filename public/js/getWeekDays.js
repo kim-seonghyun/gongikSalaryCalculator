@@ -1,6 +1,6 @@
 const getHolidayCount = require("./getHolidayCount");
 
-let getWeekDaysPerMonth = async (year, month) => {
+let getWeekDays = async (year, month) => {
   let holiday =  await getHolidayCount(year, month);
   return daysPerMonth(year, month) - weekendDaysPerMonth(year, month) - holiday;
 };
@@ -55,6 +55,6 @@ const countSpecificDaysPerMonth = (firstDaydate, year, month) => {
 };
 
 module.exports = {
-  getWeekDaysPerMonth,
+  getWeekDays,
   daysPerMonth,
 };

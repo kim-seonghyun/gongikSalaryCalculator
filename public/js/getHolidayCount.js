@@ -6,12 +6,10 @@ module.exports = async (year, month) => {
   // 평일 공휴일 수 리턴
   const yearString = String(year);
   let monthString = String(month);
-
   if (month < 10) {
     monthString = String("0" + month);
   }
   let holidayArray = await getHolidayArray(yearString,monthString);
-  console.log(holidayArray);
   if (holidayArray ==false) { //공휴일이 없는 달에는 0일 리턴
     return 0;
   }
