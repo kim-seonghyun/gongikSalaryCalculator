@@ -1,7 +1,7 @@
 const weekCalculator = require("./getWeekDaysPerMonth");
 
 module.exports = calculateSalary = async (body) => {
-  //월급계산
+  //월급 리턴
  
   let eslistmentDay = new Date(body.eslistmentDay);
   let calculateMonth = parseInt(body.calculateMonth);
@@ -10,7 +10,8 @@ module.exports = calculateSalary = async (body) => {
   let numberOfWeekDay =
     (await weekCalculator.getWeekDaysPerMonth(2020, calculateMonth)) -
     body.restDay;
-  console.log(numberOfWeekDay);
+    console.log(body.restDay);
+    console.log(numberOfWeekDay);
   if (isFirstMonth == 0) {
     let value = firstMonth(eslistmentDay, calculateMonth);
     basePay = value[0];
@@ -20,7 +21,7 @@ module.exports = calculateSalary = async (body) => {
   return calculateSalaryResult(body, basePay, numberOfWeekDay);
 };
 
-let calculateSalaryResult = (body, basePay, numberOfWeekDay) => {
+let calculateSalaryResult = (body, basePay, numberOfWeekDay) => { //salary 계산
   let foodExpenses = parseInt(body.foodExpenses);
   let transportationCost = parseInt(body.transportationCost);
   return (foodExpenses + transportationCost) * numberOfWeekDay + basePay;

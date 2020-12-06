@@ -1,5 +1,4 @@
 const mongoose = require("mongoose"),
-  User = require("./user"),
   { Schema } = require("mongoose");
 
 const userInfoSchema = new Schema({
