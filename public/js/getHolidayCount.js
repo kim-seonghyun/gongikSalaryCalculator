@@ -11,7 +11,8 @@ module.exports = async (year, month) => {
     monthString = String("0" + month);
   }
   let holidayArray = await getHolidayArray(yearString,monthString);
-  if (holidayArray === undefined) { //공휴일이 없는 달에는 0일 리턴
+  console.log(holidayArray);
+  if (holidayArray ==false) { //공휴일이 없는 달에는 0일 리턴
     return 0;
   }
   return returnRestWeekday(holidayArray);
@@ -23,6 +24,10 @@ const getHolidayArray = async (yearString, monthString)=>{
   );
   const responsdJSON = await response.json();
   const holidayArray = await responsdJSON.response.body.items.item; // api에서 특정월 공휴일을 불러옴
+    if(holidayArray ==undefined){
+      return false;
+    }
+
   if(!Array.isArray(holidayArray)){
     return [holidayArray];
   }
