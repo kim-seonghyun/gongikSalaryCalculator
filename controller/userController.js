@@ -70,7 +70,6 @@ module.exports = {
   }),
   showCalculateSalaryResult: async (req, res, next) => {
     const salary = await calculateSalary(req.body)
-    console.log(salary);
     res.locals.salary = salary
     res.render('userView/showSalary')
   }

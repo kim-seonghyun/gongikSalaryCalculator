@@ -11,7 +11,7 @@ const flashMessage = require("connect-flash");
 const morgan = require("morgan");
 require("dotenv").config();
 process.env.NODE_ENV = "production";
-console.log(app);
+
 app.set("view engine", "ejs");
 app.set("port", process.env.PORT || 3000);
 app.use(layout);

@@ -1,21 +1,27 @@
 const weekCalculator = require("./getWeekDaysPerMonth");
+const basepay = require("./basepay");
 
 module.exports = calculateSalary = async (body) => {
   //월급계산
-  let eslistmentDay = new Date(body.eslistmentDay);
-  let calculateMonth = parseInt(body.calculateMonth);
-  let basePay = calculateBasePay(eslistmentDay, calculateMonth);
-  const isFirstMonth = calculateMonth - (eslistmentDay.getMonth() + 1);
-  let numberOfWeekDay =
-    (await weekCalculator.getWeekDaysPerMonth(2020, calculateMonth)) -
-    body.restDay;
-  console.log(numberOfWeekDay);
-  if (isFirstMonth == 0) {
-    let value = firstMonth(eslistmentDay, calculateMonth);
-    basePay = value[0];
-    numberOfWeekDay = value[1];
-    return calculateSalaryResult(body, basePay, numberOfWeekDay);
+  let salaryDateInfomation = {
+    year: body.calculateYear,
+    month: body.calculateMonth
   }
+  let eslistmentDay = new Date(body.eslistmentDay);
+  let basePay = basepay(eslistmentDay, salaryDateInfomation);
+
+  let numberOfWeekDay =
+    (await weekCalculator.getWeekDaysPerMonth(salaryDateInfomation)) -
+    body.restDay;
+    //보류 에러가 너무많음 
+    //첫번쨰달 여부 확인후 결과
+  // if (isFirstMonth(eslistmentDay,salaryDateInfomation.month) ==0) {
+  //   let value = firstMonth(eslistmentDay, salaryDateInfomation,basePay);
+  //   basePay = value[0];
+  //   numberOfWeekDay = value[1];
+  //   return calculateSalaryResult(body, basePay, numberOfWeekDay);
+  // }
+  
   return calculateSalaryResult(body, basePay, numberOfWeekDay);
 };
 
@@ -24,44 +30,17 @@ let calculateSalaryResult = (body, basePay, numberOfWeekDay) => {
   let transportationCost = parseInt(body.transportationCost);
   return (foodExpenses + transportationCost) * numberOfWeekDay + basePay;
 };
-let firstMonth = (eslistmentDay, calculateMonth) => {
-  const workedDays = weekCalculator.daysPerMonth(2020, calculateMonth);
+
+let firstMonth = (eslistmentDay, salaryDateInfomation, base) => {
+  const workedDays = weekCalculator.daysPerMonth(2020, salaryDateInfomation.month);
   const basePay = Math.floor(
-    (408100 * (workedDays - eslistmentDay.getDate())) / workedDays
+    (base * (workedDays - eslistmentDay.getDate())) / workedDays
   );
   const numberOfWeekDay = workedDays - eslistmentDay.getDate();
   return [basePay, numberOfWeekDay];
 };
 
-let calculateBasePay = (eslistmentDay, calculateMonth) => {
-  //기본급 계산!
-  let serviceMonth = calculateServiceMonth(eslistmentDay, calculateMonth);
-
-  if (serviceMonth <= 2) {
-    return 408100;
-  }
-  if (serviceMonth <= 8) {
-    return 441700;
-  }
-  if (serviceMonth <= 14) {
-    return 488200;
-  }
-  if (serviceMonth < 25) {
-    return 540900;
-  }
-};
-
-let calculateServiceMonth = (eslistmentDay, calculateMonth) => {
-  //복무개월 계산
-  let today = new Date(2020, calculateMonth - 1); //원하는 month의 복무개월
-  let yearDifference = today.getFullYear() - eslistmentDay.getFullYear();
-
-  if (yearDifference > 0) {
-    //마감시간이 안남아서 stackOverflow 참고. 나중에 다시구현
-    let months = yearDifference * 12;
-    months -= eslistmentDay.getMonth();
-    months += today.getMonth();
-    return months + 1;
-  }
-  return today.getMonth() - eslistmentDay.getMonth() + 1;
-};
+//보류
+// function isFirstMonth(eslistmentDay, month){
+//   return month - (eslistmentDay.getMonth()+1);
+// }

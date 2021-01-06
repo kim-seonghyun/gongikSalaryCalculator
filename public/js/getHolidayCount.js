@@ -11,7 +11,7 @@ module.exports = async (year, month) => {
   }
 
   const response = await fetch(
-    `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=${process.env.holidayAPIKEY}&solYear=${yearString}&solMonth=${monthString}&_type=json`
+    `http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo?serviceKey=jeyicAtHfk7VZdtnfhK4a1fcdhkDYPQslA4G%2BFVbKU9lQQYpQmwKZFmsPAvTDan%2Fh3je2EMjn7%2BMWhRJlsXd3Q%3D%3D&solYear=${yearString}&solMonth=${monthString}&_type=json`
   );
   const responsdJSON = await response.json();
   const holidayArray = await responsdJSON.response.body.items.item; // api에서 특정월 공휴일을 불러옴

@@ -1,6 +1,7 @@
 const getHolidayCount = require("./getHolidayCount");
 
-let getWeekDaysPerMonth = async (year, month) => {
+let getWeekDaysPerMonth = async (salaryDateInfomation) => {
+  let {year,month} = salaryDateInfomation;
   let holiday =  await getHolidayCount(year, month);
   return daysPerMonth(year, month) - weekendDaysPerMonth(year, month) - holiday;
 };
