@@ -80,5 +80,14 @@ module.exports = {
     const salary = await calculateSalary(req.body)
     res.locals.salary = salary
     res.render('userView/showSalary')
+  },validate: (req,res,next)=>{
+    const errors = validationResult(req).errors;
+    if(Object.keys(errors).length !== 0){
+      let messages = errors.map(e => e.msg);
+      req.flash("error",messages);
+      req.skip = true;
+      next();
+    }
+    next();
   }
 }

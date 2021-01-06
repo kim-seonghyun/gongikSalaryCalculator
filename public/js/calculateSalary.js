@@ -1,4 +1,4 @@
-const weekCalculator = require("./getWeekDaysPerMonth");
+const weekCalculator = require("./getWeekDays");
 const basepay = require("./basepay");
 
 module.exports = calculateSalary = async (body) => {
@@ -31,14 +31,14 @@ let calculateSalaryResult = (body, basePay, weekDays) => { //salary 계산
   return (foodExpenses + transportationCost) * weekDays + basePay;
 };
 
-let firstMonth = (eslistmentDay, salaryDateInfomation, base) => {
-  const workedDays = weekCalculator.daysPerMonth(2020, salaryDateInfomation.month);
-  const basePay = Math.floor(
-    (base * (workedDays - eslistmentDay.getDate())) / workedDays
-  );
-  const weekDays = workedDays - eslistmentDay.getDate();
-  return [basePay, weekDays];
-};
+// let firstMonth = (eslistmentDay, salaryDateInfomation, base) => {
+//   const workedDays = weekCalculator.daysPerMonth(2020, salaryDateInfomation.month);
+//   const basePay = Math.floor(
+//     (base * (workedDays - eslistmentDay.getDate())) / workedDays
+//   );
+//   const weekDays = workedDays - eslistmentDay.getDate();
+//   return [basePay, weekDays];
+// };
 
 //보류
 // function isFirstMonth(eslistmentDay, month){

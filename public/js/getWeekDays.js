@@ -56,6 +56,6 @@ const countSpecificDaysPerMonth = (firstDaydate, year, month) => {
 };
 
 module.exports = {
-  getWeekDays,
+  getWeekDaysPerMonth,
   daysPerMonth,
 };

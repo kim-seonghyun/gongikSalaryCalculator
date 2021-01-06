@@ -26,7 +26,7 @@ router.get( //식비, 교통비 등등 입력
   userController.showUserInfoForm
 );
 //결과 계산후 리턴
-router.post("/saveUserInfo",validateUserInfoRequest,userController.validate,userController.saveUserInfo,userController.calculateSalaryResult, userController.redirectView);
+router.post("/saveUserInfo",validateUserInfoRequest,userController.validate,userController.saveUserInfo, userController.redirectView);
 
 router.get("/login", userController.showLoginForm);
 router.post("/login", userController.authenticate);
