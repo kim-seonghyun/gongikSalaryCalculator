@@ -25,10 +25,10 @@ module.exports = calculateSalary = async (body) => {
   return calculateSalaryResult(body, basePay, numberOfWeekDay);
 };
 
-let calculateSalaryResult = (body, basePay, numberOfWeekDay) => {
+let calculateSalaryResult = (body, basePay, weekDays) => { //salary 계산
   let foodExpenses = parseInt(body.foodExpenses);
   let transportationCost = parseInt(body.transportationCost);
-  return (foodExpenses + transportationCost) * numberOfWeekDay + basePay;
+  return (foodExpenses + transportationCost) * weekDays + basePay;
 };
 
 let firstMonth = (eslistmentDay, salaryDateInfomation, base) => {
@@ -36,8 +36,8 @@ let firstMonth = (eslistmentDay, salaryDateInfomation, base) => {
   const basePay = Math.floor(
     (base * (workedDays - eslistmentDay.getDate())) / workedDays
   );
-  const numberOfWeekDay = workedDays - eslistmentDay.getDate();
-  return [basePay, numberOfWeekDay];
+  const weekDays = workedDays - eslistmentDay.getDate();
+  return [basePay, weekDays];
 };
 
 //보류

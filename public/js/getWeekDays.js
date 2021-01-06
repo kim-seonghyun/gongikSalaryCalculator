@@ -38,6 +38,7 @@ let weekendDaysPerMonth = (year, month) => {
     //1일이 일요일인경우
     firstSaturDayDate = 7;
     return (
+      
       countSpecificDaysPerMonth(1, year, month) +
       countSpecificDaysPerMonth(firstSaturDayDate, year, month)
     ); //일요일+토요일 일수 리턴v
@@ -50,12 +51,11 @@ let weekendDaysPerMonth = (year, month) => {
 
 //month 당 특정 요일 개수 리턴
 const countSpecificDaysPerMonth = (firstDaydate, year, month) => {
-  let result = (daysPerMonth(year, month) - firstDaydate) / 7 + 1; //첫째주 요일 + 나머지 주차 요일 개수
-
+  let result = ((daysPerMonth(year, month) - firstDaydate) / 7) + 1; //첫째주 요일 + 나머지 주차 요일 개수
   return Math.floor(result);
 };
 
 module.exports = {
-  getWeekDaysPerMonth,
+  getWeekDays,
   daysPerMonth,
 };

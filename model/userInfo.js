@@ -1,5 +1,4 @@
 const mongoose = require("mongoose"),
-  User = require("./user"),
   { Schema } = require("mongoose");
 
 const userInfoSchema = new Schema({
@@ -9,10 +8,14 @@ const userInfoSchema = new Schema({
   },
   foodExpenses: {
     type: Number,
+    min:2000,
+    max:10000,
     required: true,
   },
   transportationCost: {
     type: Number,
+    min:2000,
+    max:10000,
     required: true,
   },
   restDay: {

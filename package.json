@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon main.js"
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
+    "express-validator": "^6.7.0",
     "flash": "^1.1.0",
     "mongoose": "^5.10.15",
     "morgan": "^1.10.0",
@@ -41,6 +42,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "nyc": "^15.1.0"
   }
 }

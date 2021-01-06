@@ -1,14 +1,18 @@
 <div class="container box form-group">
-  
-  <form class="inputUserInfo" method="POST" action="/users/create">
+  <% if(flashMessage.error) { %>
+    <% flashMessage.error.forEach(msg =>{ %>
+      <p><%= msg %></p>
+    <% }) %>
+  <% } %>
+  <form class="inputUserInfo" method="POST" action="/users/saveUserInfo">
     <label for="inputEslistmentDay">입대 일자</label>
     <input
-    class="form-control"
+      class="form-control"
       type="date"
       id="inputEslistmentDay"
       name="eslistmentDay"
-      value="2018-07-22"
-      min="2018-01-01"
+      value="2019-08-01"
+      min="2019-01-01"
       max="2020-12-31"
     />
 
@@ -21,15 +25,22 @@
       type="number"
       name="transportationCost"
       id="inputTransportationCost"
+      min="1000"
+      max="10000"
       required
     />
 
+<<<<<<< HEAD:views/userView/inputFoodExpensesAndTransportationCostForm.ejs
     <label for="inputWantMonth">원하는 월급날짜</label>
     <input class="form-control" type="number" maxlength="2" name="calculateYear" placeholder="year">
     <input class="form-control" type="number" maxlength="2" name="calculateMonth" placeholder="month">
+=======
+    <label for="inputWantMonth">몇월 월급을 계산할까요?(2020년만 지원중)</label>
+    <input class="form-control" type="number" min="1" max="12" name="calculateMonth" placeholder="month">
+>>>>>>> 303a99f26d6697a79dd0c1b0f9c2505d4363e23a:views/userView/userInfoForm.ejs
 
     <label for="inputRestDay">연/병가 사용 일수</label>
-    <input class="form-control" type="number" name="restDay" id="inputRestDay" placeholder="오후반가는 식비가 나옵니다! ">
+    <input class="form-control" type="number" name="restDay" id="inputRestDay"  placeholder="오후반가는 식비가 나옵니다! ">
     <div class="submitDiv">
       <button class="btn btn-dark btn-outline-dark submitButton" type="submit">제출!</button>
     </div>

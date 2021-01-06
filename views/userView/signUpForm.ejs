@@ -7,6 +7,14 @@
       pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
       required
     />
+    <% if(flashMessage.error) { %>
+       <% flashMessage.error.forEach(msg=>{ %>
+           <p><%= msg %></p>
+       <% }) %>
+    <% } %>
+<form class="showSignUpForm" method="POST" action="/users/signUp">
+    <label for="inputEmail">email</label>
+    <input id="inputEmail" name="email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+">
 
     <label for="inputName">name</label>
     <input id="inputName" name="name" required />
