@@ -1,0 +1,9 @@
+function solution(n)
+{
+    n = String(n);
+    n = n.split('');
+    return n.reduce((accu,currentValue)=>{
+        currentValue = parseInt(currentValue);
+        return accu + currentValue;
+    },0)
+}
